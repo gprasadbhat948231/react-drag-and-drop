@@ -3,11 +3,11 @@ import "./CreateTask.css";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
-const CreateTask = ({ tasks, setTasks }) => {
+const CreateTask = ({ setTasks }) => {
   const initialState = {
     id: "",
     taskName: "",
-    status: "added",
+    status: "Added",
   };
 
   const [task, setTask] = useState(initialState);
@@ -20,11 +20,10 @@ const CreateTask = ({ tasks, setTasks }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setTasks((prev) => {
-      const tasks = [...prev, task];
-      localStorage.setItem("tasks", JSON.stringify(tasks));
+      let tasks = [...prev, task];
+      localStorage.setItem("task", JSON.stringify(tasks));
       return tasks;
     });
-
     setTask(initialState);
   };
 
@@ -33,6 +32,7 @@ const CreateTask = ({ tasks, setTasks }) => {
       <form onSubmit={handleSubmit} className="create-task-container">
         <input
           type="text"
+          name="taskName"
           value={task.taskName}
           onChange={handleInputChange}
           placeholder="Enter new task"
