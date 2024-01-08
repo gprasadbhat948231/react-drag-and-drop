@@ -1,26 +1,53 @@
 .sections-container {
-  width: 90%;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
   gap: 30px;
   margin: auto;
 }
 
-.tasks-container {
+.tasks-container-Added {
   width: 95%;
   text-align: center;
-  height: 500px;
+  height: 650px;
   padding: 10px;
   border-radius: 20px;
-  background-color: #383535;
-  box-shadow: rgba(255, 255, 255, 0.836) 0px 2px 8px 0px;
+  background-color: #2a88f32a;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    overflow: hidden;
+}
+
+.tasks-container-Started {
+  width: 95%;
+  text-align: center;
+  height: 650px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #fcbe4b4d;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.tasks-container-Completed {
+  width: 95%;
+  text-align: center;
+  height: 650px;
+  padding: 10px;
+  overflow: hidden;
+  border-radius: 20px;
+  background-color: #13f52631;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .tasks-categories-cont {
-  height: 430px;
+  height: 585px;
+  width: 100%;
+  margin-top: 10px;
   border-radius: 10px;
-  border: 1px solid white;
   overflow-y: auto;
 }
 
@@ -29,33 +56,41 @@
   flex-direction: column;
   gap: 15px;
   padding: 10px;
+  overflow: hidden;
 }
 
 .tasks {
-  padding: 5px;
-  font-weight: 600;
+  text-align: left;
+  padding-left: 10px;
+  font-weight: 400;
   font-size: 20px;
-  border: 1px solid rgb(150, 145, 145);
+  background-color: white;
+  border-radius: 10px;
 }
 
-@media screen and (min-width:720px) and (max-width: 1024px) {
+p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (min-width: 720px) and (max-width: 1024px) {
   .sections-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     gap: 20px;
-    width: 90%;
+    width: 100%;
     margin: auto;
   }
 }
 
-@media screen and (min-width:340px) and (max-width:719px) {
+@media screen and (min-width: 340px) and (max-width: 719px) {
   .sections-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: auto;
     gap: 20px;
-    width: 90%;
+    width: 100%;
     margin: auto;
   }
 }

@@ -17,15 +17,17 @@ function App() {
 
   return (
     <div className="App">
-      <div className="task-management-container">
-        <Heading />
-        <CreateTask tasks={tasks} setTasks={setTasks} />
-        <ListTasks
-          tasks={tasks}
-          setTasks={setTasks}
-          added={added}
-          setAdded={setAdded}
-        />
+      <div style={{padding:"20px"}}>
+        <div className="task-management-container">
+          <Heading />
+          <CreateTask tasks={tasks} setTasks={setTasks} />
+          <ListTasks
+            tasks={tasks}
+            setTasks={setTasks}
+            added={added}
+            setAdded={setAdded}
+          />
+        </div>
       </div>
     </div>
   );

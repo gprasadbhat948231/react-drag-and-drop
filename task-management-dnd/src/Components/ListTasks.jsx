@@ -41,16 +41,20 @@ const ListTasks = ({ tasks, added, setAdded }) => {
     {
       id: 1,
       name: "Added",
+      total: added.tasks && added.tasks.length,
     },
     {
       id: 2,
       name: "Started",
+      total: started.tasks && started.tasks.length,
     },
     {
       id: 3,
       name: "Completed",
+      total: completed.tasks && completed.tasks.length,
     },
   ];
+  console.log(added);
 
   return (
     <div className="sections-container">
@@ -68,8 +72,8 @@ const ListTasks = ({ tasks, added, setAdded }) => {
         }
       >
         {statuses.map((el) => (
-          <div className="tasks-container" key={el.id}>
-            <Header head={el.name} />
+          <div className={"tasks-container-" + el.name} key={el.id}>
+            <Header head={el.name} totalTasks={el.total} />
             <Droppable droppableId={`${el.id}`}>
               {(provided) => (
                 <div

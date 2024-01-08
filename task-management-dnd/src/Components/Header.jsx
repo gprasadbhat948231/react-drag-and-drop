@@ -1,17 +1,10 @@
-const Header = ({ head }) => {
+import "../Styles/Heading.css";
+
+const Header = ({ head, totalTasks }) => {
   return (
-    <h2
-      style={{
-        color:
-          head === "Added"
-            ? "aliceblue"
-            : head === "Started"
-            ? "orange"
-            : "greenyellow",
-      }}
-    >
-      {head}
-    </h2>
+    <div className="task-header">
+      {head} ({totalTasks})
+    </div>
   );
 };
 

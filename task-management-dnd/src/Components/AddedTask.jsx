@@ -7,22 +7,21 @@ const AddedTask = ({ tasks }) => {
       {tasks.length > 0 &&
         tasks.map((el, index) => (
           <Draggable key={el.id} draggableId={`${el.id}`} index={index}>
-            {(provided, snapshot) => {
+            {(provided) => {
               return (
                 <div
                   ref={provided.innerRef}
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
                   style={{
-                    color: snapshot.isDragging ? "white" : "#3a2b2fbb",
-                    backgroundColor: snapshot.isDragging
-                      ? "#383535"
-                      : "aliceblue",
                     ...provided.draggableProps.style,
                   }}
                   className="tasks"
                 >
-                  <p key={el.id}>{el.taskName}</p>
+                  <div>
+                    <p>Task : {el.taskName}</p>
+                    <p>Created On : {el.timeStamp}</p>
+                  </div>
                 </div>
               );
             }}

@@ -1,3 +1,5 @@
+import { getFormattedDate } from "./currentDate";
+
 export const onDragEnd = (
   result,
   added,
@@ -6,7 +8,7 @@ export const onDragEnd = (
   setStarted,
   completed,
   setCompleted
-) => { 
+) => {
   if (!result.destination) return;
 
   const { source, destination } = result;
@@ -18,7 +20,8 @@ export const onDragEnd = (
 
   const updateTaskStatus = (list, status) => {
     let taskToBeUpdated = list.tasks[source.index];
-    let updatedTask = { ...taskToBeUpdated, status: status };
+    const timeStamp = getFormattedDate();
+    let updatedTask = { ...taskToBeUpdated, status: status, timeStamp };
     return updatedTask;
   };
 
