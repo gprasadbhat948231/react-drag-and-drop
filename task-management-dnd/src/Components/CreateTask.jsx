@@ -1,5 +1,4 @@
-import react from "react";
-import "./CreateTask.css";
+import "../Styles/CreateTask.css";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
@@ -19,8 +18,13 @@ const CreateTask = ({ setTasks }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTasks((prev) => {
-      let tasks = [...prev, task];
+    setTasks(() => {
+      let prev = JSON.parse(localStorage.getItem("task"));
+      let tasks = [];
+      
+      if (prev) tasks = [...prev, task];
+      else tasks.push(task);
+      
       localStorage.setItem("task", JSON.stringify(tasks));
       return tasks;
     });
@@ -28,16 +32,17 @@ const CreateTask = ({ setTasks }) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="create-task-container">
+    <div className="create-task-container">
+      <form onSubmit={handleSubmit} className="create-task-form">
         <input
           type="text"
           name="taskName"
           value={task.taskName}
           onChange={handleInputChange}
           placeholder="Enter new task"
+          className="task-input"
         />
-        <button>Create</button>
+        <button className="task-create-btn">Create</button>
       </form>
     </div>
   );

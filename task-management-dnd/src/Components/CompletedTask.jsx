@@ -1,8 +1,9 @@
 import { Draggable } from "react-beautiful-dnd";
+import "../Styles/Tasks.css";
 
 const CompletedTask = ({ tasks }) => {
   return (
-    <div>
+    <div className="individual-task-container">
       {tasks.length > 0 &&
         tasks.map((el, index) => (
           <Draggable key={el.id} draggableId={`${el.id}`} index={index}>
@@ -13,11 +14,13 @@ const CompletedTask = ({ tasks }) => {
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
                   style={{
-                    padding: "10px",
-                    color: "white",
-                    backgroundColor: snapshot.isDragging ? "yellow" : "#6740a4",
+                    color: snapshot.isDragging ? "white" : "#3a2b2fbb",
+                    backgroundColor: snapshot.isDragging
+                      ? "#383535"
+                      : "greenyellow",
                     ...provided.draggableProps.style,
                   }}
+                  className="tasks"
                 >
                   <p key={el.id}>{el.taskName}</p>
                 </div>

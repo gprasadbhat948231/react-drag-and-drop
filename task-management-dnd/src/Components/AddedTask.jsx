@@ -1,30 +1,34 @@
 import { Draggable } from "react-beautiful-dnd";
+import "../Styles/Tasks.css";
 
 const AddedTask = ({ tasks }) => {
   return (
-    <>
-      {tasks.length > 0 && tasks.map((el, index) => (
-        <Draggable key={el.id} draggableId={`${el.id}`} index={index}>
-          {(provided, snapshot) => {
-            return (
-              <div
-                ref={provided.innerRef}
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                style={{
-                  padding: "10px",
-                  color: "white",
-                  backgroundColor: snapshot.isDragging ? "yellow" : "#6740a4",
-                  ...provided.draggableProps.style
-                }}
-              >
-                <p key={el.id}>{el.taskName}</p>
-              </div>
-            );
-          }}
-        </Draggable>
-      ))}
-      </>
+    <div className="individual-task-container">
+      {tasks.length > 0 &&
+        tasks.map((el, index) => (
+          <Draggable key={el.id} draggableId={`${el.id}`} index={index}>
+            {(provided, snapshot) => {
+              return (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  style={{
+                    color: snapshot.isDragging ? "white" : "#3a2b2fbb",
+                    backgroundColor: snapshot.isDragging
+                      ? "#383535"
+                      : "aliceblue",
+                    ...provided.draggableProps.style,
+                  }}
+                  className="tasks"
+                >
+                  <p key={el.id}>{el.taskName}</p>
+                </div>
+              );
+            }}
+          </Draggable>
+        ))}
+    </div>
   );
 };
 

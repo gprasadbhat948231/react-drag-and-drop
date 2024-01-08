@@ -1,98 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Header from "./Header";
-import "./ListTasks.css";
+import "../Styles/Tasks.css";
 import AddedTask from "./AddedTask";
 import StartedTask from "./StartedTask";
 import CompletedTask from "./CompletedTask";
 
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-
-const onDragEnd = (
-  result,
-  added,
-  setAdded,
-  started,
-  setStarted,
-  completed,
-  setCompleted
-) => {
-  if (!result.destination) return;
-  const { source, destination } = result;
-  if (source.droppableId != destination.droppableId) {
-    if (destination.droppableId == 2 && source.droppableId == 1) {
-      setStarted({
-        name: "Started",
-        tasks: [...started.tasks, added.tasks[source.index]],
-      });
-      let updatedTasks = added.tasks.filter(
-        (el, index) => index !== source.index
-      );
-      setAdded({ name: "Added", tasks: updatedTasks });
-    } else if (destination.droppableId == 3 && source.droppableId == 1) {
-      setCompleted({
-        name: "Completed",
-        tasks: [...completed.tasks, added.tasks[source.index]],
-      });
-      let updatedTasks = added.tasks.filter(
-        (el, index) => index !== source.index
-      );
-      setAdded({ name: "Added", tasks: updatedTasks });
-    } else if (source.droppableId == 2 && destination.droppableId == 1) {
-      setAdded({
-        name: "Added",
-        tasks: [...added.tasks, started.tasks[source.index]],
-      });
-      let updatedTasks = started.tasks.filter(
-        (el, index) => index !== source.index
-      );
-      setStarted({ name: "Started", tasks: updatedTasks });
-    } else if (source.droppableId == 3 && destination.droppableId == 1) {
-      setAdded({
-        name: "Added",
-        tasks: [...added.tasks, completed.tasks[source.index]],
-      });
-      let updatedTasks = completed.tasks.filter(
-        (el, index) => index !== source.index
-      );
-      setCompleted({ name: "Completed", tasks: updatedTasks });
-    } else if (source.droppableId == 2 && destination.droppableId == 3) {
-      setCompleted({
-        name: "Completed",
-        tasks: [...completed.tasks, started.tasks[source.index]],
-      });
-      let updatedTasks = started.tasks.filter(
-        (el, index) => index !== source.index
-      );
-      setStarted({ name: "Started", tasks: updatedTasks });
-    } else {
-      setStarted({
-        name: "Started",
-        tasks: [...started.tasks, completed.tasks[source.index]],
-      });
-      let updatedTasks = completed.tasks.filter(
-        (el, index) => index !== source.index
-      );
-      setCompleted({ name: "Completed", tasks: updatedTasks });
-    }
-  } else {
-    if (source.droppableId == 1) {
-      const dupItems = [...added.tasks];
-      const [removed] = dupItems.splice(source.index, 1);
-      dupItems.splice(destination.index, 0, removed);
-      setAdded({ name: "Added", tasks: dupItems });
-    } else if (source.droppableId == 2) {
-      const dupItems = [...started.tasks];
-      const [removed] = dupItems.splice(source.index, 1);
-      dupItems.splice(destination.index, 0, removed);
-      setStarted({ name: "Started", tasks: dupItems });
-    } else {
-      const dupItems = [...completed.tasks];
-      const [removed] = dupItems.splice(source.index, 1);
-      dupItems.splice(destination.index, 0, removed);
-      setCompleted({ name: "Completed", tasks: dupItems });
-    }
-  }
-};
+import { onDragEnd } from "../Utils/index";
 
 const ListTasks = ({ tasks, added, setAdded }) => {
   const [started, setStarted] = useState({
@@ -115,6 +29,13 @@ const ListTasks = ({ tasks, added, setAdded }) => {
       setCompleted({ name: "Completed", tasks: complete });
     }
   }, [tasks]);
+
+  let mergedTasks = [...added.tasks, ...started.tasks, ...completed.tasks];
+
+  useMemo(() => {
+    if (mergedTasks.length > 0)
+      localStorage.setItem("task", JSON.stringify(mergedTasks));
+  }, [mergedTasks]);
 
   const statuses = [
     {
@@ -147,19 +68,14 @@ const ListTasks = ({ tasks, added, setAdded }) => {
         }
       >
         {statuses.map((el) => (
-          <div className="added-container" key={el.id}>
+          <div className="tasks-container" key={el.id}>
             <Header head={el.name} />
             <Droppable droppableId={`${el.id}`}>
-              {(provided, snapshot) => (
+              {(provided) => (
                 <div
                   {...provided.droppableProps}
                   ref={provided.innerRef}
-                  style={{
-                    backgroundColor: snapshot.isDraggingOver
-                      ? "lightblue"
-                      : "lightgray",
-                    padding: "4px",
-                  }}
+                  className="tasks-categories-cont"
                 >
                   {el.name === "Added" ? (
                     <AddedTask tasks={added.tasks} id={el.id} />
