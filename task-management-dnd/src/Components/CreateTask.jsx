@@ -12,12 +12,12 @@ const CreateTask = ({ setTasks }) => {
   };
 
   const [task, setTask] = useState(initialState);
- 
+
   const formattedDate = getFormattedDate();
- 
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setTask({ ...task, id: uuidv4(), [name]: value, timeStamp:formattedDate  });
+    setTask({ ...task, id: uuidv4(), [name]: value, timeStamp: formattedDate });
   };
 
   const handleSubmit = (e) => {
@@ -46,7 +46,9 @@ const CreateTask = ({ setTasks }) => {
           placeholder="Enter new task"
           className="task-input"
         />
-        <button className="task-create-btn">Create</button>
+        <button className="task-create-btn" disabled={task.taskName === ""}>
+          Create
+        </button>
       </form>
     </div>
   );

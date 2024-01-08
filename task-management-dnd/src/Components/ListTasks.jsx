@@ -54,7 +54,6 @@ const ListTasks = ({ tasks, added, setAdded }) => {
       total: completed.tasks && completed.tasks.length,
     },
   ];
-  console.log(added);
 
   return (
     <div className="sections-container">

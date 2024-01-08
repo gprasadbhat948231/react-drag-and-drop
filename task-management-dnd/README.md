@@ -7,7 +7,7 @@ ReactJS, Local storage
 React-Beautiful-DND
 
 ## Deployment Link
-https://task-management-mxkoq4b47-gprasadbhat948231.vercel.app/
+https://statuesque-sherbet-4ed334.netlify.app/
 
 **_This is fully responsive for both mobile and tablet screen sizes._**
 
@@ -23,8 +23,8 @@ Clone the Repository from Github. Then do the following steps:
     
 ## Screenshot
    
-# When the tasks fields are empty
-![Screenshot from 2024-01-08 09-13-32](https://github.com/abhiamber/resonant-dinosaurs-925/assets/107459781/a5518ecd-b5bc-4001-86e2-9e9b49bfd9c5)
+## When the tasks fields are empty
+
 
 ## After Adding tasks
-![Screenshot from 2024-01-08 09-19-09](https://github.com/abhiamber/resonant-dinosaurs-925/assets/107459781/3af21cde-e6b3-4728-93a6-2ea9b73bd971)
+
