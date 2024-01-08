@@ -24,7 +24,9 @@ Clone the Repository from Github. Then do the following steps:
 ## Screenshot
    
 ## When the tasks fields are empty
-
+![Screenshot from 2024-01-08 21-19-07](https://github.com/gprasadbhat948231/react-drag-and-drop/assets/107459781/efd6c6f4-19ed-4f05-8f02-b36a42bacd6b)
 
 ## After Adding tasks
+![Screenshot from 2024-01-08 21-31-30](https://github.com/gprasadbhat948231/react-drag-and-drop/assets/107459781/171247ac-b4b5-432f-8368-fbd074b07b13)
+
 
