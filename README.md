@@ -1,6 +1,5 @@
 ## Task Management app using React-Beautiful-DND
-This is a Task management app using React with drag and drop functionalities. Using this app users can handle their tasks and able to move the tasks to different stages according to the task's completed status. 
-
+This is a task management app built with React that incorporates drag-and-drop functionalities. Through this application, users can efficiently manage their tasks and easily transition them between different stages based on their completion status.
 ## Tech Stack
 ReactJS, Local storage
 
