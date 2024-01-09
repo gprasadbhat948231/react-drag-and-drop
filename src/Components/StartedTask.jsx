@@ -20,6 +20,7 @@ const StartedTask = ({ tasks }) => {
                 >
                   <p key={el.id}>Task : {el.taskName}</p>
                   <p>Started On: {el.timeStamp}</p>
+                  <p>Last Updated: {el.lastUpdated}</p>
                 </div>
               );
             }}

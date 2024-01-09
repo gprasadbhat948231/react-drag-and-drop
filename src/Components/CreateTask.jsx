@@ -9,6 +9,7 @@ const CreateTask = ({ setTasks }) => {
     taskName: "",
     status: "Added",
     timeStamp: "",
+    lastUpdated: "",
   };
 
   const [task, setTask] = useState(initialState);
@@ -17,13 +18,20 @@ const CreateTask = ({ setTasks }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setTask({ ...task, id: uuidv4(), [name]: value, timeStamp: formattedDate });
+    setTask({
+      ...task,
+      id: uuidv4(),
+      [name]: value,
+      timeStamp: formattedDate,
+      lastUpdated: formattedDate,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setTasks(() => {
-      let prev = JSON.parse(localStorage.getItem("task"));
+      const prev = JSON.parse(localStorage.getItem("task"));
       let tasks = [];
 
       if (prev) tasks = [...prev, task];
@@ -32,11 +40,12 @@ const CreateTask = ({ setTasks }) => {
       localStorage.setItem("task", JSON.stringify(tasks));
       return tasks;
     });
+
     setTask(initialState);
   };
 
   return (
-    <div className="create-task-container">
+    <div className="letcreate-task-container">
       <form onSubmit={handleSubmit} className="create-task-form">
         <input
           type="text"

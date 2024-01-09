@@ -11,13 +11,13 @@ function App() {
   });
 
   useEffect(() => {
-    let data = JSON.parse(localStorage.getItem("task"));
+    const data = JSON.parse(localStorage.getItem("task"));
     if (data) setTasks(data);
   }, []);
 
   return (
     <div className="App">
-      <div style={{padding:"20px"}}>
+      <div style={{ padding: "20px" }}>
         <div className="task-management-container">
           <Heading />
           <CreateTask tasks={tasks} setTasks={setTasks} />

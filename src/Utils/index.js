@@ -14,79 +14,87 @@ export const onDragEnd = (
   const { source, destination } = result;
 
   const filteringFunction = (data) => {
-    let updatedTasks = data.tasks.filter((el, index) => index !== source.index);
+    const updatedTasks = data.tasks.filter(
+      (el, index) => index !== source.index
+    );
     return updatedTasks;
   };
 
   const updateTaskStatus = (list, status) => {
-    let taskToBeUpdated = list.tasks[source.index];
-    const timeStamp = getFormattedDate();
-    let updatedTask = { ...taskToBeUpdated, status: status, timeStamp };
-    return updatedTask;
+    const taskToBeUpdated = list.tasks[source.index];
+    const lastUpdated = getFormattedDate();
+    console.log(status);
+    if (status === "Started" || status === "Completed") {
+      const updatedTask = { ...taskToBeUpdated, status: status, lastUpdated };
+      return updatedTask;
+    } else {
+      const updatedTask = { ...taskToBeUpdated, status: status };
+      return updatedTask;
+    }
   };
 
   if (source.droppableId !== destination.droppableId) {
     switch (`${destination.droppableId}-${source.droppableId}`) {
       case "2-1": {
-        let updatedStatus = updateTaskStatus(added, "Started");
+        const updatedStatus = updateTaskStatus(added, "Started");
         setStarted({
           name: "Started",
           tasks: [...started.tasks, updatedStatus],
         });
 
-        let updatedTasks = filteringFunction(added);
+        const updatedTasks = filteringFunction(added);
         setAdded({ name: "Added", tasks: updatedTasks });
         break;
       }
       case "3-1": {
-        let updatedStatus = updateTaskStatus(added, "Completed");
+        const updatedStatus = updateTaskStatus(added, "Completed");
 
         setCompleted({
           name: "Completed",
           tasks: [...completed.tasks, updatedStatus],
         });
 
-        let updatedTasks = filteringFunction(added);
+        const updatedTasks = filteringFunction(added);
         setAdded({ name: "Added", tasks: updatedTasks });
         break;
       }
       case "1-2": {
-        let updatedStatus = updateTaskStatus(started, "Added");
+        const updatedStatus = updateTaskStatus(started, "Added");
         setAdded({
           name: "Added",
           tasks: [...added.tasks, updatedStatus],
         });
-        let updatedTasks = filteringFunction(started);
+        const updatedTasks = filteringFunction(started);
         setStarted({ name: "Started", tasks: updatedTasks });
         break;
       }
       case "1-3": {
-        let updatedStatus = updateTaskStatus(completed, "Added");
+        const updatedStatus = updateTaskStatus(completed, "Added");
         setAdded({
           name: "Added",
           tasks: [...added.tasks, updatedStatus],
         });
-        let updatedTasks = filteringFunction(completed);
+        const updatedTasks = filteringFunction(completed);
         setCompleted({ name: "Completed", tasks: updatedTasks });
         break;
       }
       case "3-2": {
-        let updatedStatus = updateTaskStatus(started, "Completed");
+        const updatedStatus = updateTaskStatus(started, "Completed");
         setCompleted({
           name: "Completed",
           tasks: [...completed.tasks, updatedStatus],
         });
-        let updatedTasks = filteringFunction(started);
+        const updatedTasks = filteringFunction(started);
         setStarted({ name: "Started", tasks: updatedTasks });
         break;
       }
       default: {
-        let updatedStatus = updateTaskStatus(completed, "Started");
+        const updatedStatus = updateTaskStatus(completed, "Started");
         setStarted({
           name: "Started",
           tasks: [...started.tasks, updatedStatus],
         });
-        let updatedTasks = filteringFunction(completed);
+        const updatedTasks = filteringFunction(completed);
         setCompleted({ name: "Completed", tasks: updatedTasks });
       }
     }

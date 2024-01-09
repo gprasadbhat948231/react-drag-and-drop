@@ -21,6 +21,7 @@ const AddedTask = ({ tasks }) => {
                   <div>
                     <p>Task : {el.taskName}</p>
                     <p>Created On : {el.timeStamp}</p>
+                    <p>Last Updated: {el.lastUpdated}</p>
                   </div>
                 </div>
               );

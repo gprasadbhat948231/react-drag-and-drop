@@ -21,6 +21,7 @@ const CompletedTask = ({ tasks }) => {
                   <div>
                     <p key={el.id}>Task : {el.taskName}</p>
                     <p>Completed On: {el.timeStamp}</p>
+                    <p>Last Updated: {el.lastUpdated}</p>
                   </div>
                 </div>
               );

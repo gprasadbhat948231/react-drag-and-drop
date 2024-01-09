@@ -30,7 +30,7 @@ const ListTasks = ({ tasks, added, setAdded }) => {
     }
   }, [tasks]);
 
-  let mergedTasks = [...added.tasks, ...started.tasks, ...completed.tasks];
+  const mergedTasks = [...added.tasks, ...started.tasks, ...completed.tasks];
 
   useMemo(() => {
     if (mergedTasks.length > 0)
